@@ -1,53 +1,33 @@
-# Usa la imagen base de Ubuntu
+# Usar una imagen base de Ubuntu
 FROM ubuntu:22.04
 
-# Establecer el directorio de trabajo
+# Establecer el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Establecer el frontend de debconf como no interactivo
-ENV DEBIAN_FRONTEND=noninteractive
+# Copiar los archivos de tu aplicación al contenedor
+COPY . .
 
-# Instalar dependencias necesarias
-RUN apt-get update && \
-    apt-get install -y \
-    python3-pip \
-    python3-dev \
-    build-essential \
-    libmysqlclient-dev \
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
     curl \
-    sudo \
-    passwd && \
-    # Crear el grupo 'nixbld' y el usuario 'nixbld' para evitar el error en la instalación de Nix
-    groupadd -g 1001 nixbld && \
-    useradd -m -g nixbld nixbld && \
-    # Crear directorios necesarios para Nix
-    mkdir -m 0755 /nix && \
-    chown root /nix && \
-    # Crear un usuario adicional que pertenezca al grupo 'nixbld'
-    useradd -m -g nixbld user1
+    gnupg \
+    build-essential \
+    python3.10-dev \
+    python3-pip \
+    python3-venv \
+    ca-certificates \
+    libssl-dev \
+    libffi-dev
 
-# Instalar Nix
+# Copiar y ejecutar el script de instalación de Nix (ya está instalado en tu máquina local)
 RUN curl -sSL https://nixos.org/nix/install | sh
 
-# Añadir el path de nixpacks
-ENV PATH="/root/.nix-profile/bin:${PATH}"
+# Establecer las variables de entorno de Nix para usar en el contenedor
+ENV NIX_PATH=/home/alba/.nix-profile/etc/profile.d/nix.sh
+RUN . /home/alba/.nix-profile/etc/profile.d/nix.sh
 
-# Copiar el archivo de configuración de nixpacks
-COPY nixpacks.toml /app/nixpacks.toml
+# Instalar cualquier otra dependencia con Nix
+RUN nix-env -iA nixpkgs.python3
 
-# Copiar el resto del código de tu proyecto
-COPY . /app
-
-# Instalar dependencias usando nixpacks
-RUN nixpacks install
-
-# Crear entorno virtual y activar
-RUN python3 -m venv /opt/venv && \
-    . /opt/venv/bin/activate && \
-    pip install -r requirements.txt
-
-# Exponer el puerto 8000
-EXPOSE 8000
-
-# Ejecutar la aplicación con gunicorn
-CMD ["gunicorn", "pacific_dreams.wsgi"]
+# Ejecutar el contenedor con el ambiente configurado
+CMD ["bash"]

@@ -8,24 +8,31 @@
     <title>Sobre Nosotros - Pacific Dreams</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Cinzel:wght@400;700&family=Padyakke+Expanded+One&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
-        <div class="container-fluid bg-gradient-primary p-3">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center text-md-left">
+        <div class="container-fluid bg-pacific p-3">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-4 text-center">
                     <div class="logo">
                         <img src="{% static 'images/logo.png' %}" alt="Logo Pacific Dreams" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <ul class="nav justify-content-center">
-                        <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link text-coral" href="{% url 'index' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'experiencia' %}">Experiencias</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Sobre Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="{% url 'contacto' %}">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link text-coral" href="{% url 'contacto' %}">Contacto</a></li>
                     </ul>
+                    <div class="search-bar text-center">
+                        <form action="{% url 'search' %}" method="get">
+                            <input type="text" name="query" placeholder="Buscar..." aria-label="Buscar" style="border-radius: 50px;">
+                            <button type="submit" style="border-radius: 50px;"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,25 +40,34 @@
 
     <main id="nosotros" class="container mt-5">
         <section class="nosotros">
-        <h2 class="text-center">Conoce nuestra historia y lo que nos hace únicos</h2>
-        <p class="text-center">En <strong></strong>Pacific Dreams</strong>, nos especializamos en ofrecer <strong>viajes exclusivos</strong> y <strong>propiedades de lujo</strong>. Nuestro objetivo es brindarte una <strong>experiencia única</strong>, combinando destinos de ensueño con propiedades excepcionales.</p>
-            <div class="text-center">
-                <h3 class="text-center">Nuestra Misión</h3>
+            <h2 class="text-center mb-4">Conoce nuestra historia y lo que nos hace únicos</h2>
+            <p class="text-center mb-5">En <strong>Pacific Dreams</strong>, nos especializamos en ofrecer <strong>viajes exclusivos</strong> y <strong>propiedades de lujo</strong>. Nuestro objetivo es brindarte una <strong>experiencia única</strong>, combinando destinos de ensueño con propiedades excepcionales.</p>
+            
+            <div class="text-center mb-4">
+                <h3 class="text-center mb-3">Nuestra Misión</h3>
                 <p>En Pacific Dreams, nuestra misión es ofrecer a nuestros clientes experiencias de lujo que superen sus expectativas. Ya sea que busquen un retiro relajante o una aventura exclusiva, nos aseguramos de que cada detalle esté a la altura de sus sueños.</p>
             </div>
-            <div class="text-center">
-                <h3 class="text-center">Nuestros Valores</h3>
-                <ul class="text-md-left">
+
+            <div class="text-center mb-5">
+                <h3 class="text-center mb-3">Nuestros Valores</h3>
+                <ul class="list-unstyled text-md-left">
                     <li><strong>Exclusividad:</strong> Acceso a destinos y propiedades únicas.</li>
                     <li><strong>Atención Personalizada:</strong> Nos aseguramos de que cada cliente reciba un servicio excepcional.</li>
                     <li><strong>Compromiso con la Calidad:</strong> Solo trabajamos con los mejores proveedores y destinos.</li>
                     <li><strong>Responsabilidad:</strong> Fomentamos un turismo sostenible y respetuoso con el medio ambiente.</li>
                 </ul>
             </div>
+
+            <div class="video-container text-center">
+                <video width="560" height="310" controls>
+                    <source src="{% static 'images/The O.C.mp4' %}" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
         </section>
     </main>
 
-    <footer class="bg-primary text-white text-center py-4">
+    <footer class="bg-coral text-white text-center py-4">
         <p>&copy; 2025 Pacific Dreams. Todos los derechos reservados.</p>
     </footer>
 

@@ -14,10 +14,14 @@ RUN apt-get update && \
     curl \
     sudo \
     passwd && \
+    # Crear el grupo y el usuario 'nixbld' para evitar el error de instalación de Nix
     groupadd -g 1001 nixbld && \
-    useradd -m -g nixbld nixbld  # Crear el grupo y el usuario 'nixbld'
+    useradd -m -g nixbld nixbld && \
+    # Crear directorios necesarios para Nix
+    mkdir -m 0755 /nix && \
+    chown root /nix
 
-# Instalar nixpacks
+# Instalar Nix
 RUN curl -sSL https://nixos.org/nix/install | sh
 
 # Añadir el path de nixpacks

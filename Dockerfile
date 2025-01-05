@@ -11,7 +11,8 @@ RUN apt-get update && \
     python3-dev \
     build-essential \
     libmysqlclient-dev \
-    curl
+    curl \
+    sudo  # Instalamos sudo
 
 # Instalar nixpacks
 RUN curl -sSL https://nixos.org/nix/install | sh

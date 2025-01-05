@@ -12,7 +12,8 @@ RUN apt-get update && \
     build-essential \
     libmysqlclient-dev \
     curl \
-    sudo  # Instalamos sudo
+    sudo \
+    groupadd nixbld  # Crear el grupo 'nixbld'
 
 # Instalar nixpacks
 RUN curl -sSL https://nixos.org/nix/install | sh

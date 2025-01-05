@@ -14,7 +14,8 @@ RUN apt-get update && \
     curl \
     sudo \
     passwd && \
-    groupadd -g 1001 nixbld  # Crear el grupo 'nixbld' con un GID específico
+    groupadd -g 1001 nixbld && \
+    useradd -m -g nixbld nixbld  # Crear el grupo y el usuario 'nixbld'
 
 # Instalar nixpacks
 RUN curl -sSL https://nixos.org/nix/install | sh

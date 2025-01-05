@@ -17,7 +17,7 @@ RUN apt-get update && \
     curl \
     sudo \
     passwd && \
-    # Crear el grupo y el usuario 'nixbld' para evitar el error de instalación de Nix
+    # Crear el grupo 'nixbld' y el usuario 'nixbld' para evitar el error en la instalación de Nix
     groupadd -g 1001 nixbld && \
     useradd -m -g nixbld nixbld && \
     # Crear directorios necesarios para Nix

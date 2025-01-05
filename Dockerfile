@@ -13,6 +13,7 @@ RUN apt-get update && \
     libmysqlclient-dev \
     curl \
     sudo \
+    passwd && \  # Instalar el paquete 'passwd' que contiene 'groupadd' y otras utilidades de gestión de usuarios
     groupadd nixbld  # Crear el grupo 'nixbld'
 
 # Instalar nixpacks

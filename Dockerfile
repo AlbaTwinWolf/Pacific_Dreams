@@ -4,6 +4,9 @@ FROM ubuntu:22.04
 # Establecer el directorio de trabajo
 WORKDIR /app
 
+# Establecer el frontend de debconf como no interactivo
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Instalar dependencias necesarias
 RUN apt-get update && \
     apt-get install -y \

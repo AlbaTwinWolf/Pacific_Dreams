@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y \
     python3-venv \
     ca-certificates \
     libssl-dev \
-    libffi-dev
+    libffi-dev \
+    pkg-config \
+    libmysqlclient-dev  # Esto es necesario para mysqlclient
 
 # Copiar los archivos de tu aplicación al contenedor
 COPY . .

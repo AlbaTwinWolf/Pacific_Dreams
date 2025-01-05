@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Pacific Dreams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Cinzel:wght@400;700&family=Padyakke+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container-fluid bg-pacific p-3">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-left">
+                    <div class="logo">
+                        <img src="{% static 'images/logo.png' %}" alt="Logo Pacific Dreams" class="img-fluid">
+                    </div>
+        <h1>Clientes de Pacific Dreams</h1>
+        <p>Aquí puedes ver todos los clientes registrados.</p>
+    </header>
+    <main id="clientes" class="container mt-5">
+    <section class="clientes">
+        <h2 class="text-center mb-4">Lista de Clientes</h2>
+        <div class="row">
+            {% for cliente in clientes %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-lg">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cliente.nombre }} {{ cliente.apellido }}</h5>
+                            <p class="card-text">Email: {{ cliente.email }}</p>
+                            <p class="card-text">Teléfono: {{ cliente.telefono }}</p>
+                            <p class="card-text">Fecha de Registro: {{ cliente.fecha_registro }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No hay clientes registrados.</p>
+            {% endfor %}
+        </div>
+    </section>
+    </main>
+    <footer class="bg-coral text-center py-4">
+        <p>&copy; 2025 Pacific Dreams. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

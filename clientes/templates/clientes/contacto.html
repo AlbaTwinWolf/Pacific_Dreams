@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Pacific Dreams</title>
+    <title>{% block title %}Contacto - Pacific Dreams{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Cinzel:wght@400;700&family=Padyakke+Expanded+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -28,7 +28,7 @@
                         <li class="nav-item"><a class="nav-link text-coral" href="{% url 'contacto' %}">Contacto</a></li>
                     </ul>
                     <div class="search-bar text-center">
-                        <form action="search.html" method="get">
+                        <form action="{% url 'experiencia' %}" method="get">
                             <input type="text" name="query" placeholder="Buscar..." aria-label="Buscar" style="border-radius: 50px;">
                             <button type="submit" style="border-radius: 50px;"><i class="fas fa-search"></i></button>
                         </form>
@@ -43,6 +43,7 @@
             <h2 class="text-center mb-4">Contacto y Asesoramiento</h2>
             <p class="text-center">Si tienes alguna consulta o necesitas asesoramiento sobre nuestros servicios, rellena el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
             <form action="#" method="post" class="p-4 bg-light rounded shadow">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="nombre">Nombre Completo:</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre" required>

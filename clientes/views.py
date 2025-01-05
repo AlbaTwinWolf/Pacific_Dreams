@@ -3,7 +3,7 @@ from .models import Cliente, Direccion
 from .forms import ClienteForm, DireccionForm
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'clientes/index.html')
 
 def clientes_list(request):
     clientes = Cliente.objects.all()

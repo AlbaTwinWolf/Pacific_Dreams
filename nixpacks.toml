@@ -1,0 +1,5 @@
+# nixpacks.toml
+[dependencies]
+python = "3.11"
+libmysqlclient = "dev"
+gcc = "latest"

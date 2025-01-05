@@ -1,21 +1,25 @@
+# Usa la imagen base de nixpacks
 FROM ghcr.io/railwayapp/nixpacks:ubuntu-1731369831
 
-# Instalación de dependencias del sistema necesarias para mysqlclient
-RUN apt-get update && apt-get install -y \
-    libmysqlclient-dev \
-    gcc \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Establece el directorio de trabajo
+WORKDIR /app
 
-# Crear y activar el entorno virtual
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+# Copia el archivo de configuración de nixpacks
+COPY nixpacks.toml /app/nixpacks.toml
 
-# Copiar los archivos del proyecto
-COPY . /app/
+# Copia el resto del código de tu proyecto
+COPY . /app
 
-# Instalar dependencias de Python
-RUN pip install --no-cache-dir -r /app/requirements.txt
+# Instala las dependencias necesarias
+RUN nixpacks install
 
-# Comando para iniciar la aplicación
+# Crear un entorno virtual y activar el entorno
+RUN python -m venv /opt/venv && \
+    . /opt/venv/bin/activate && \
+    pip install -r requirements.txt
+
+# Exponer el puerto 8000
+EXPOSE 8000
+
+# Ejecuta la aplicación con gunicorn
 CMD ["gunicorn", "pacific_dreams.wsgi"]

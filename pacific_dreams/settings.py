@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'pacific_dreams.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'PacificDreams',
+        'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': '5618',
-        'HOST': 'localhost',
+        'PASSWORD': 'WWlOPbfugbDuLtuApaDpGNDEMhlPnqaH',
+        'HOST': 'mysql.railway.internal',
         'PORT': '3306',
     }
 }

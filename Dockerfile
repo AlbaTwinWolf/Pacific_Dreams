@@ -19,7 +19,9 @@ RUN apt-get update && \
     useradd -m -g nixbld nixbld && \
     # Crear directorios necesarios para Nix
     mkdir -m 0755 /nix && \
-    chown root /nix
+    chown root /nix && \
+    # Crear un usuario adicional que pertenezca al grupo 'nixbld'
+    useradd -m -g nixbld user1
 
 # Instalar Nix
 RUN curl -sSL https://nixos.org/nix/install | sh
